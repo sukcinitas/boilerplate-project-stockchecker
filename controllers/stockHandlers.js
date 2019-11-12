@@ -19,7 +19,7 @@ function StockHandler() {
   this.getOneWithoutLike = async function(stock, db) {
     stock = stock.toUpperCase();
     try {
-      if (await db.collection("stock").findOne({ _id: stock })) {
+      if (!await db.collection("stock").findOne({ _id: stock })) {
         await db.collection("stock").insert({ _id: stock, ips: [] });
       }
       let result = await db
@@ -38,7 +38,7 @@ function StockHandler() {
   this.getOneWithLike = async function(stock, db, ip) {
     stock = stock.toUpperCase();
     try {
-      if (await db.collection("stock").findOne({ _id: stock })) {
+      if (!await db.collection("stock").findOne({ _id: stock })) {
         await db.collection("stock").insert({ _id: stock, ips: [] });
       }
       await db
