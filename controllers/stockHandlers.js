@@ -3,14 +3,10 @@ const fetch = require("node-fetch");
 function StockHandler() {
   this.getPrice = async function(stockName) {
     let price;
-    await fetch(
-      // `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${stockName}&apikey=236VR1A35SFQBBZ2`
-      `https://repeated-alpaca.glitch.me/v1/stock/${stockName}/quote`
-    )
+    await fetch(`https://repeated-alpaca.glitch.me/v1/stock/${stockName}/quote`)
       .then(response => response.json())
       .then(data => {
-        // price = Number(data["Global Quote"]["05. price"]).toFixed(2) || "could not get the price";
-        price = Number(data.latestPrice).toFixed(2) || "could not get the price";
+        price = Number(data.latestPrice).toFixed(2);
       });
     return price;
   };
@@ -24,8 +20,6 @@ function StockHandler() {
     stock = stock.toUpperCase();
     try {
       if (await db.collection("stock").findOne({ _id: stock })) {
-        console.log("exists");
-      } else {
         await db.collection("stock").insert({ _id: stock, ips: [] });
       }
       let result = await db
@@ -45,7 +39,6 @@ function StockHandler() {
     stock = stock.toUpperCase();
     try {
       if (await db.collection("stock").findOne({ _id: stock })) {
-      } else {
         await db.collection("stock").insert({ _id: stock, ips: [] });
       }
       await db

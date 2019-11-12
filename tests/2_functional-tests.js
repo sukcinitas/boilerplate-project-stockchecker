@@ -69,8 +69,8 @@ suite('Functional Tests', function() {
           assert.equal(res.body.stockData[1].stock, 'MSFT', 'should have second stock');
           assert.property(res.body.stockData[0], 'price', 'should have first price');
           assert.property(res.body.stockData[1], 'price', 'should have second price');
-          assert.property(res.body.stockData[0], 'rel_likes', 'should have first likes');
-          assert.property(res.body.stockData[1], 'rel_likes', 'should have second likes');
+          assert.property(res.body.stockData[0], 'rel_likes', 'should have first relational likes');
+          assert.property(res.body.stockData[1], 'rel_likes', 'should have second relational likes');
           done();
         });
       });
@@ -86,8 +86,8 @@ suite('Functional Tests', function() {
           assert.equal(res.body.stockData[1].stock, 'MSFT', 'should have second stock');
           assert.property(res.body.stockData[0], 'price', 'should have price');
           assert.property(res.body.stockData[1], 'price', 'should have price');
-          assert.equal(res.body.stockData[0].rel_likes, 0, 'should have first likes');
-          assert.equal(res.body.stockData[1].rel_likes, 0, 'should have second likes');
+          assert.equal(res.body.stockData[0].rel_likes, 0, 'should have first relational likes');
+          assert.equal(res.body.stockData[1].rel_likes, 0, 'should have second relational likes');
           done();
         });
       });
